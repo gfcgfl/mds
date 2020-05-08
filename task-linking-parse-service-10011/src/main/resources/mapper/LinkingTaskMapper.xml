@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zju.nir.link.mapper.LinkingTaskMapper">
+  <resultMap id="BaseResultMap" type="com.zju.nir.link.entity.LinkingTaskDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="patient_id" jdbcType="INTEGER" property="patientId" />
+    <result column="collect_id" jdbcType="INTEGER" property="collectId" />
+    <result column="a_word_mis" jdbcType="INTEGER" property="aWordMis" />
+    <result column="a_word_time" jdbcType="INTEGER" property="aWordTime" />
+    <result column="b_word_mis" jdbcType="INTEGER" property="bWordMis" />
+    <result column="b_word_time" jdbcType="INTEGER" property="bWordTime" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="bloodoxygen_file_path" jdbcType="VARCHAR" property="bloodoxygenFilePath" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, patient_id, collect_id, a_word_mis, a_word_time, b_word_mis, b_word_time, start_time, 
+    end_time, bloodoxygen_file_path
+  </sql>
+  <select id="selectByExample" parameterType="com.zju.nir.link.entity.LinkingTaskDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from linking_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from linking_task
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from linking_task
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zju.nir.link.entity.LinkingTaskDOExample">
+    delete from linking_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zju.nir.link.entity.LinkingTaskDO">
+    insert into linking_task (id, patient_id, collect_id, 
+      a_word_mis, a_word_time, b_word_mis, 
+      b_word_time, start_time, end_time, 
+      bloodoxygen_file_path)
+    values (#{id,jdbcType=INTEGER}, #{patientId,jdbcType=INTEGER}, #{collectId,jdbcType=INTEGER}, 
+      #{aWordMis,jdbcType=INTEGER}, #{aWordTime,jdbcType=INTEGER}, #{bWordMis,jdbcType=INTEGER}, 
+      #{bWordTime,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{bloodoxygenFilePath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zju.nir.link.entity.LinkingTaskDO">
+    insert into linking_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="patientId != null">
+        patient_id,
+      </if>
+      <if test="collectId != null">
+        collect_id,
+      </if>
+      <if test="aWordMis != null">
+        a_word_mis,
+      </if>
+      <if test="aWordTime != null">
+        a_word_time,
+      </if>
+      <if test="bWordMis != null">
+        b_word_mis,
+      </if>
+      <if test="bWordTime != null">
+        b_word_time,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="bloodoxygenFilePath != null">
+        bloodoxygen_file_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="patientId != null">
+        #{patientId,jdbcType=INTEGER},
+      </if>
+      <if test="collectId != null">
+        #{collectId,jdbcType=INTEGER},
+      </if>
+      <if test="aWordMis != null">
+        #{aWordMis,jdbcType=INTEGER},
+      </if>
+      <if test="aWordTime != null">
+        #{aWordTime,jdbcType=INTEGER},
+      </if>
+      <if test="bWordMis != null">
+        #{bWordMis,jdbcType=INTEGER},
+      </if>
+      <if test="bWordTime != null">
+        #{bWordTime,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bloodoxygenFilePath != null">
+        #{bloodoxygenFilePath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zju.nir.link.entity.LinkingTaskDOExample" resultType="java.lang.Long">
+    select count(*) from linking_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update linking_task
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.patientId != null">
+        patient_id = #{record.patientId,jdbcType=INTEGER},
+      </if>
+      <if test="record.collectId != null">
+        collect_id = #{record.collectId,jdbcType=INTEGER},
+      </if>
+      <if test="record.aWordMis != null">
+        a_word_mis = #{record.aWordMis,jdbcType=INTEGER},
+      </if>
+      <if test="record.aWordTime != null">
+        a_word_time = #{record.aWordTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.bWordMis != null">
+        b_word_mis = #{record.bWordMis,jdbcType=INTEGER},
+      </if>
+      <if test="record.bWordTime != null">
+        b_word_time = #{record.bWordTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bloodoxygenFilePath != null">
+        bloodoxygen_file_path = #{record.bloodoxygenFilePath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update linking_task
+    set id = #{record.id,jdbcType=INTEGER},
+      patient_id = #{record.patientId,jdbcType=INTEGER},
+      collect_id = #{record.collectId,jdbcType=INTEGER},
+      a_word_mis = #{record.aWordMis,jdbcType=INTEGER},
+      a_word_time = #{record.aWordTime,jdbcType=INTEGER},
+      b_word_mis = #{record.bWordMis,jdbcType=INTEGER},
+      b_word_time = #{record.bWordTime,jdbcType=INTEGER},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      bloodoxygen_file_path = #{record.bloodoxygenFilePath,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zju.nir.link.entity.LinkingTaskDO">
+    update linking_task
+    <set>
+      <if test="patientId != null">
+        patient_id = #{patientId,jdbcType=INTEGER},
+      </if>
+      <if test="collectId != null">
+        collect_id = #{collectId,jdbcType=INTEGER},
+      </if>
+      <if test="aWordMis != null">
+        a_word_mis = #{aWordMis,jdbcType=INTEGER},
+      </if>
+      <if test="aWordTime != null">
+        a_word_time = #{aWordTime,jdbcType=INTEGER},
+      </if>
+      <if test="bWordMis != null">
+        b_word_mis = #{bWordMis,jdbcType=INTEGER},
+      </if>
+      <if test="bWordTime != null">
+        b_word_time = #{bWordTime,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bloodoxygenFilePath != null">
+        bloodoxygen_file_path = #{bloodoxygenFilePath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zju.nir.link.entity.LinkingTaskDO">
+    update linking_task
+    set patient_id = #{patientId,jdbcType=INTEGER},
+      collect_id = #{collectId,jdbcType=INTEGER},
+      a_word_mis = #{aWordMis,jdbcType=INTEGER},
+      a_word_time = #{aWordTime,jdbcType=INTEGER},
+      b_word_mis = #{bWordMis,jdbcType=INTEGER},
+      b_word_time = #{bWordTime,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      bloodoxygen_file_path = #{bloodoxygenFilePath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

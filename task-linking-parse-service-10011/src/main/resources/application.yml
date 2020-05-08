@@ -1,0 +1,32 @@
+server:
+  port: 10011
+
+spring:
+  application:
+    name: linking-task-parse-service
+  cloud:
+    zookeeper:
+      connect-string: 10.16.98.192:2188
+      max-retries: 10
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://10.13.81.186:3306/mds?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false
+    username: root
+    password: lab205
+    driver-class-name: com.mysql.jdbc.Driver
+    dbcp2:
+      min-idle: 1    #数据库连接池最小维持的连接数
+      initial-size: 1   #初始化的连接数
+      max-total: 10    #最大连接数
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+
+
+
+# ================自定义属性==================
+task:
+  id: 2
+  name: 数字字母连线任务

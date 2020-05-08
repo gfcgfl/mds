@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zju.nir.report.mapper.ReportRecordMapper">
+    <resultMap id="BaseResultMap" type="com.zju.nir.report.entity.ReportRecordDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="patient_id" jdbcType="INTEGER" property="patientId"/>
+        <result column="collect_id" jdbcType="INTEGER" property="collectId"/>
+        <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="report_path" jdbcType="VARCHAR" property="reportPath"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, patient_id, collect_id, creat_time, status, report_path
+  </sql>
+    <select id="selectByExample" parameterType="com.zju.nir.report.entity.ReportRecordDOExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from report_record
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from report_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from report_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.zju.nir.report.entity.ReportRecordDOExample">
+        delete from report_record
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.zju.nir.report.entity.ReportRecordDO">
+    insert into report_record (id, patient_id, collect_id, 
+      creat_time, status, report_path
+      )
+    values (#{id,jdbcType=INTEGER}, #{patientId,jdbcType=INTEGER}, #{collectId,jdbcType=INTEGER}, 
+      #{creatTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{reportPath,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.zju.nir.report.entity.ReportRecordDO">
+        insert into report_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="patientId != null">
+                patient_id,
+            </if>
+            <if test="collectId != null">
+                collect_id,
+            </if>
+            <if test="creatTime != null">
+                creat_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="reportPath != null">
+                report_path,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="patientId != null">
+                #{patientId,jdbcType=INTEGER},
+            </if>
+            <if test="collectId != null">
+                #{collectId,jdbcType=INTEGER},
+            </if>
+            <if test="creatTime != null">
+                #{creatTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="reportPath != null">
+                #{reportPath,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.zju.nir.report.entity.ReportRecordDOExample"
+            resultType="java.lang.Long">
+        select count(*) from report_record
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update report_record
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.patientId != null">
+                patient_id = #{record.patientId,jdbcType=INTEGER},
+            </if>
+            <if test="record.collectId != null">
+                collect_id = #{record.collectId,jdbcType=INTEGER},
+            </if>
+            <if test="record.creatTime != null">
+                creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.status != null">
+                status = #{record.status,jdbcType=INTEGER},
+            </if>
+            <if test="record.reportPath != null">
+                report_path = #{record.reportPath,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update report_record
+        set id = #{record.id,jdbcType=INTEGER},
+        patient_id = #{record.patientId,jdbcType=INTEGER},
+        collect_id = #{record.collectId,jdbcType=INTEGER},
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+        status = #{record.status,jdbcType=INTEGER},
+        report_path = #{record.reportPath,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zju.nir.report.entity.ReportRecordDO">
+        update report_record
+        <set>
+            <if test="patientId != null">
+                patient_id = #{patientId,jdbcType=INTEGER},
+            </if>
+            <if test="collectId != null">
+                collect_id = #{collectId,jdbcType=INTEGER},
+            </if>
+            <if test="creatTime != null">
+                creat_time = #{creatTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="reportPath != null">
+                report_path = #{reportPath,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zju.nir.report.entity.ReportRecordDO">
+    update report_record
+    set patient_id = #{patientId,jdbcType=INTEGER},
+      collect_id = #{collectId,jdbcType=INTEGER},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      report_path = #{reportPath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+    <resultMap id="ReportCreationStatusMap" type="com.zju.nir.report.entity.ReportCreationStatus">
+        <!--<id column="id" jdbcType="INTEGER" property="id"/>-->
+        <result column="collect_id" jdbcType="INTEGER" property="collectId"/>
+        <result column="patient_id" jdbcType="INTEGER" property="patientId"/>
+        <result column="doctor_id" jdbcType="INTEGER" property="doctorId"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="create_report" jdbcType="BOOLEAN" property="createReport"/>
+        <result column="report_id" jdbcType="INTEGER" property="reportId"/>
+        <result column="stat" jdbcType="INTEGER" property="status"/>
+        <result column="report_path" jdbcType="VARCHAR" property="reportPath"/>
+    </resultMap>
+
+    <select id="listReportCreationStatusByPatientId" parameterType="java.lang.Integer" resultMap="ReportCreationStatusMap">
+
+        select
+               a.id as collect_id,
+               a.patient_id as patient_id,
+               a.doctor_id as doctor_id,
+               a.start_time as start_time,
+               a.end_time as end_time,
+               b.id as report_id,
+               b.status as stat,
+               b.report_path as report_path,
+               if (b.id is null , FALSE , TRUE ) as create_report
+        from collect_record a
+        left join report_record b
+        on a.id = b.collect_id and a.patient_id = b.patient_id
+        where a.patient_id = #{patientId,jdbcType=INTEGER}
+
+    </select>
+
+</mapper>

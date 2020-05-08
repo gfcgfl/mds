@@ -1,0 +1,13 @@
+# =====================自定义配置=======================
+task-id:
+  rey: 1
+  linking: 2
+  stroop: 3
+  rest: 4
+
+# 下面的配置要与具体的服务名称相对应
+task-service-name:
+  rey: rey-task-parse-service
+  linking: linking-task-parse-service
+  stroop: stroop-task-parse-service
+  rest: rest-task-parse-service

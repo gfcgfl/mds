@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 /**
  * @author xiaoguo
  */
-@Component
-@FeignClient(value = TaskServiceNameConstant.REST)
+//@Component
+//@FeignClient(value = TaskServiceNameConstant.REST)
 public interface RestTaskFeignClient {
 
-    @GetMapping("/task/{collectId}/{patientId}")
+    @GetMapping("/task/rest/{collectId}/{patientId}")
     ReturnResult<TaskDataRecord> getTaskData(@PathVariable("collectId") Integer collectId,
                                              @PathVariable("patientId") Integer patientId);
 }

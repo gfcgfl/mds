@@ -5,19 +5,24 @@ import com.zju.nir.common.entity.TaskDataRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static com.zju.nir.common.constant.TaskIdConstant.LINKING;
+
 /**
  * @author xiaoguo
  */
 
 @Component("linkingTaskFeignClientAdaptor")
-public class LinkingTaskFeignClientAdaptor implements FeignClientAdaptor{
+public class LinkingTaskFeignClientAdaptor implements FeignClientAdaptor {
+
+//    @Autowired
+//    private LinkingTaskFeignClient linkingTaskFeignClient;
 
     @Autowired
-    private LinkingTaskFeignClient linkingTaskFeignClient;
+    private TaskManageServiceFeignClient taskManageServiceFeignClient;
 
     @Override
     public TaskDataRecord getTaskData(Integer collectId, Integer patientId) throws Exception {
-        ReturnResult<TaskDataRecord> ret = linkingTaskFeignClient.getTaskData(collectId, patientId);
+        ReturnResult<TaskDataRecord> ret = taskManageServiceFeignClient.getTaskData(LINKING, collectId, patientId);
         if (ReturnResult.SUCCESS_CODE.equals(ret.getCode())) {
             return ret.getData();
         }

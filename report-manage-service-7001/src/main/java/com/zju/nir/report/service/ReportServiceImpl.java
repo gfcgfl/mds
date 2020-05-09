@@ -69,7 +69,7 @@ public class ReportServiceImpl implements ReportService {
          * 将生成的报告进行存储（交由file-manage-service模块）
          */
         ReportStorageStatus storageStatus = this.storeReportFile(tempFile, reportMetaData);
-        tempFile.deleteOnExit();
+        FileUtils.deleteFile(tempFile);
 
 
         /**

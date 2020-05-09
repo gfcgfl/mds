@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
-public class SingleChannelDataAndMark {
+public class SingleChannelData {
 
     /**
      * 一个通道中的所有帧

@@ -25,6 +25,6 @@ public class TaskDataDetail extends TaskDataRecord {
      * key: 第几个通道
      * value： 这个通道的数据
      */
-    private LinkedHashMap<Integer, SingleChannelDataAndMark> channelsData;
+    private LinkedHashMap<Integer, SingleChannelData> channelsData;
 
 }

@@ -11,6 +11,7 @@
 
     <artifactId>task-base-service</artifactId>
     <description>作为其他任务模块的基础模块，抽象出了每个不同任务的相同功能实现</description>
+    <packaging>jar</packaging>
 
     <dependencies>
 

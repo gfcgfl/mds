@@ -70,6 +70,7 @@ public class TaskDataAcquirementServiceImpl implements TaskDataAcquirementServic
                 TaskDataDetail target = new TaskDataDetail();
                 //将解析数据写入
                 target.setChannelsData(ret.getData().getChannelsData());
+                target.setMarks(ret.getData().getTaskMarks());
                 //将其他元信息写入
                 BeanUtils.copyProperties(taskData, target);
 

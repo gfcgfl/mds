@@ -28,13 +28,13 @@ public interface CollectManageService {
     ReturnResult stopCollectRound(Integer collectId, Date stopTime);
 
 
-//    /**
-//     * 获取 patientId患者 尚未生成报告的 采集轮次信息
-//     * @param patientId
-//     * @param createdCollectIds 当前患者已经生成报告的采集轮次id
-//     * @return
-//     */
-//    List<CollectRecordDO> listCollectRoundsNotCreateReport(Integer patientId,
-//                                                           List<Integer> createdCollectIds) throws Exception;
+    /**
+     * 获取 patientId患者 尚未生成报告的 采集轮次信息
+     * @param patientId
+     * @param createdCollectIds 当前患者已经生成报告的采集轮次id
+     * @return
+     */
+    List<CollectRecordDO> listCollectRoundsNotCreateReport(Integer patientId,
+                                                           List<Integer> createdCollectIds) throws Exception;
 
 }

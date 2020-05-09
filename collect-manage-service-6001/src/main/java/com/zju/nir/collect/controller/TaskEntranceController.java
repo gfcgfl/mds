@@ -4,6 +4,7 @@ import com.zju.nir.collect.entity.vo.TaskDataAndMarkVO;
 import com.zju.nir.collect.service.DispatchTaskService;
 import com.zju.nir.collect.service.MarkService;
 import com.zju.nir.common.entity.ReturnResult;
+import com.zju.nir.common.utils.FileUtils;
 import com.zju.nir.common.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,11 +61,11 @@ public class TaskEntranceController {
 
 
         File markedFile = markService.doMark(taskDataAndMark.getMarks(), tempFile);
-        tempFile.deleteOnExit();
+        FileUtils.deleteFile(tempFile);
 
         // todo 将标记后的文件和任务数据发送给特定的任务服务
         ReturnResult<Object> ret = dispatchTaskService.dispatch(tempFile, taskDataAndMark);
-        markedFile.deleteOnExit();
+        FileUtils.deleteFile(markedFile);
         return ret;
     }
 

@@ -16,9 +16,13 @@ import java.io.File;
  */
 public abstract class AbstractTaskService implements TaskService {
 
-    @Autowired
+
     protected FileManageServiceFeignClient fileManageServiceFeignClient;
 
+
+    public AbstractTaskService(FileManageServiceFeignClient fileManageServiceFeignClient) {
+        this.fileManageServiceFeignClient = fileManageServiceFeignClient;
+    }
 
     @Override
     public ReturnResult<Object> addTask(TaskDataDTO taskDataDTO) {

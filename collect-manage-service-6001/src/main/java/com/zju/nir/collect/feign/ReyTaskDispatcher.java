@@ -7,6 +7,7 @@ import com.zju.nir.common.entity.TaskDataDTO;
 import com.zju.nir.common.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import sun.misc.BASE64Encoder;
 
 import java.io.File;
 
@@ -16,8 +17,12 @@ import java.io.File;
 @Component(TaskDispatcher.DISPATHCER_NAME_PREFIX + TaskIdConstant.REY)
 public class ReyTaskDispatcher implements TaskDispatcher {
 
+//    @Autowired
+//    private ReyTaskFeignClient reyTaskFeignClient;
+
+
     @Autowired
-    private ReyTaskFeignClient reyTaskFeignClient;
+    private TaskManageServiceFeignClient taskManageServiceFeignClient;
 
     @Override
     public ReturnResult<Object> forward(File file, TaskDataAndMarkVO taskDataAndMark) {
@@ -26,10 +31,12 @@ public class ReyTaskDispatcher implements TaskDispatcher {
                 .setCollectId(taskDataAndMark.getCollectId())
                 .setPatientId(taskDataAndMark.getPatientId())
                 .setStartTime(taskDataAndMark.getStartTime())
-                .setEndTime(taskDataAndMark.getEndTime())
-                .setFile(FileUtils.toBytes(file));
+                .setEndTime(taskDataAndMark.getEndTime());
+        BASE64Encoder encoder = new BASE64Encoder();
+        String encodeBytes = encoder.encode(FileUtils.toBytes(file));
+        dto.setFileString(encodeBytes);
 
         dto.setData(taskDataAndMark.getTask1());
-        return reyTaskFeignClient.addReyTask(toJson(dto));
+        return taskManageServiceFeignClient.addReyTask(toJson(dto));
     }
 }

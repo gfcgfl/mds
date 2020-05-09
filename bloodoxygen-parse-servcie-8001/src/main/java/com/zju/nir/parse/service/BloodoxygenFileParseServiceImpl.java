@@ -1,9 +1,8 @@
 package com.zju.nir.parse.service;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import com.zju.nir.common.entity.Mark;
 import com.zju.nir.common.entity.ParsedBloodoxygenFileData;
-import com.zju.nir.common.entity.SingleChannelDataAndMark;
+import com.zju.nir.common.entity.SingleChannelData;
 import com.zju.nir.common.entity.SingleFrameData;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +22,12 @@ public class BloodoxygenFileParseServiceImpl implements BloodoxygenFileParseServ
     @Override
     public void parseBloodoxygenFile(File bloodoxygenFile, ParsedBloodoxygenFileData result) {
         // todo 这里先模拟一下
-        LinkedHashMap<Integer, SingleChannelDataAndMark> mockMap = result.getChannelsData();
+        LinkedHashMap<Integer, SingleChannelData> mockMap = result.getChannelsData();
         if (mockMap == null) {
             mockMap = new LinkedHashMap<>();
             result.setChannelsData(mockMap);
         }
-        SingleChannelDataAndMark one = new SingleChannelDataAndMark();
+        SingleChannelData one = new SingleChannelData();
         Date time1 = new Date();
         List<SingleFrameData> channelData = new ArrayList<SingleFrameData>(){
             {

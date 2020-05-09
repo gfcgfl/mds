@@ -5,6 +5,8 @@ import com.zju.nir.common.entity.TaskDataRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static com.zju.nir.common.constant.TaskIdConstant.STROOP;
+
 /**
  * @author xiaoguo
  */
@@ -12,12 +14,16 @@ import org.springframework.stereotype.Component;
 @Component("stroopTaskFeignClientAdaptor")
 public class StroopTaskFeignClientAdaptor implements FeignClientAdaptor {
 
+//    @Autowired
+//    private StroopTaskFeignClient stroopTaskFeignClient;
+
+
     @Autowired
-    private StroopTaskFeignClient stroopTaskFeignClient;
+    private TaskManageServiceFeignClient taskManageServiceFeignClient;
 
     @Override
     public TaskDataRecord getTaskData(Integer collectId, Integer patientId) throws Exception {
-        ReturnResult<TaskDataRecord> ret = stroopTaskFeignClient.getTaskData(collectId, patientId);
+        ReturnResult<TaskDataRecord> ret = taskManageServiceFeignClient.getTaskData(STROOP, collectId, patientId);
         if (ReturnResult.SUCCESS_CODE.equals(ret.getCode())) {
             return ret.getData();
         }

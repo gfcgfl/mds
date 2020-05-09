@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @author xiaoguo
  */
-@Component
-@FeignClient(value = TaskServiceNameConstant.STROOP)
+//@Component
+//@FeignClient(value = TaskServiceNameConstant.STROOP)
 public interface StroopTaskFeignClient {
 
     @PostMapping("/task/stroop")

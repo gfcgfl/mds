@@ -43,9 +43,7 @@ public interface TaskDispatcher {
         jsonObject.put("startTime", dto.getStartTime());
         jsonObject.put("endTime", dto.getEndTime());
 
-        BASE64Encoder encoder = new BASE64Encoder();
-        String encodeBytes = encoder.encode(dto.getFile());
-        jsonObject.put("file", encodeBytes);
+        jsonObject.put("fileString", dto.getFileString());
         jsonObject.put("data", dto.getData());
         return jsonObject.toJSONString();
     }

@@ -5,6 +5,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.zju.nir.common.entity.TaskDataDetail;
+import com.zju.nir.common.utils.FileUtils;
 import com.zju.nir.report.config.ReportConfig;
 import com.zju.nir.report.entity.ReportData;
 import com.zju.nir.report.entity.TaskRecordsAndImages;
@@ -66,16 +67,16 @@ public class ReportCreateServiceImpl implements ReportCreateService {
             pdfReport = createPdf(taskMap, reportData);
         } finally {
             /**
-             * 将临时性的图片文件删除    todo  todo  todo  todo  todo  todo  todo  todo
+             * 将图片文件删除
              */
-//            for (TaskRecordsAndImages recordsAndImages : taskMap.values()) {
-//                List<File> taskImages = recordsAndImages.getTaskImages();
-//                if (taskImages != null) {
-//                    for (File taskImage : taskImages) {
-//                        taskImage.deleteOnExit();
-//                    }
-//                }
-//            }
+            for (TaskRecordsAndImages recordsAndImages : taskMap.values()) {
+                List<File> taskImages = recordsAndImages.getTaskImages();
+                if (taskImages != null) {
+                    for (File taskImage : taskImages) {
+                        FileUtils.deleteFile(taskImage);
+                    }
+                }
+            }
 
         }
         return pdfReport;
@@ -133,11 +134,11 @@ public class ReportCreateServiceImpl implements ReportCreateService {
                 continue;
             }
             for (File taskImgFile : taskImgFiles) {
-                taskImgFile.deleteOnExit();
+                FileUtils.deleteFile(taskImgFile);
             }
         }
         if (pdfReport != null) {
-            pdfReport.deleteOnExit();
+            FileUtils.deleteFile(pdfReport);
         }
     }
 

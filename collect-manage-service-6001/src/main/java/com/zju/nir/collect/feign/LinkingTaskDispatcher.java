@@ -7,6 +7,7 @@ import com.zju.nir.common.entity.TaskDataDTO;
 import com.zju.nir.common.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import sun.misc.BASE64Encoder;
 
 import java.io.File;
 
@@ -16,8 +17,11 @@ import java.io.File;
 @Component(TaskDispatcher.DISPATHCER_NAME_PREFIX + TaskIdConstant.LINKING)
 public class LinkingTaskDispatcher implements TaskDispatcher {
 
+//    @Autowired
+//    private LinkingTaskFeignClient linkingTaskFeignClient;
+
     @Autowired
-    private LinkingTaskFeignClient linkingTaskFeignClient;
+    private TaskManageServiceFeignClient taskManageServiceFeignClient;
 
     @Override
     public ReturnResult<Object> forward(File file, TaskDataAndMarkVO taskDataAndMark) {
@@ -26,11 +30,13 @@ public class LinkingTaskDispatcher implements TaskDispatcher {
                 .setCollectId(taskDataAndMark.getCollectId())
                 .setPatientId(taskDataAndMark.getPatientId())
                 .setStartTime(taskDataAndMark.getStartTime())
-                .setEndTime(taskDataAndMark.getEndTime())
-                .setFile(FileUtils.toBytes(file));
+                .setEndTime(taskDataAndMark.getEndTime());
+        BASE64Encoder encoder = new BASE64Encoder();
+        String encodeBytes = encoder.encode(FileUtils.toBytes(file));
+        dto.setFileString(encodeBytes);
 
         dto.setData(taskDataAndMark.getTask2());
-        return linkingTaskFeignClient.addLinkingTask(toJson(dto));
+        return taskManageServiceFeignClient.addLinkingTask(toJson(dto));
 
     }
 }

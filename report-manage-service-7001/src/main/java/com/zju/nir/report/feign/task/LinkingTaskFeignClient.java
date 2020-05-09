@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@Component
-@FeignClient(value = TaskServiceNameConstant.LINKING)
+//@Component
+//@FeignClient(value = TaskServiceNameConstant.LINKING)
 public interface LinkingTaskFeignClient {
 
-    @GetMapping("/task/{collectId}/{patientId}")
+    @GetMapping("/task/linking/{collectId}/{patientId}")
     ReturnResult<TaskDataRecord> getTaskData(@PathVariable("collectId") Integer collectId,
                                              @PathVariable("patientId") Integer patientId);
 }

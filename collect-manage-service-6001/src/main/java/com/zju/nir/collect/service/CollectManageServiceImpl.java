@@ -60,14 +60,14 @@ public class CollectManageServiceImpl implements CollectManageService {
     }
 
 
-//    @Override
-//    public List<CollectRecordDO> listCollectRoundsNotCreateReport(Integer patientId,
-//                                                                  List<Integer> createdCollectIds)
-//            throws Exception{
-//
-//        CollectRecordDOExample example = new CollectRecordDOExample();
-//        CollectRecordDOExample.Criteria criteria = example.createCriteria();
-//        criteria.andPatientIdEqualTo(patientId).andIdNotIn(createdCollectIds);
-//        return collectRecordMapper.selectByExample(example);
-//    }
+    @Override
+    public List<CollectRecordDO> listCollectRoundsNotCreateReport(Integer patientId,
+                                                                  List<Integer> createdCollectIds)
+            throws Exception{
+
+        CollectRecordDOExample example = new CollectRecordDOExample();
+        CollectRecordDOExample.Criteria criteria = example.createCriteria();
+        criteria.andPatientIdEqualTo(patientId).andIdNotIn(createdCollectIds);
+        return collectRecordMapper.selectByExample(example);
+    }
 }

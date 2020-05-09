@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @author xiaoguo
  */
-@Component
-@FeignClient(value = TaskServiceNameConstant.REY)
+//@Component
+//@FeignClient(value = TaskServiceNameConstant.REY)
 public interface ReyTaskFeignClient {
 
     @PostMapping("/task/rey")

@@ -28,6 +28,19 @@ public class FileUtils {
     }
 
 
+    public static boolean deleteFile(File fileToDelete) {
+        if (fileToDelete == null) {
+            return false;
+        }
+
+        if (fileToDelete.exists()) {
+            return fileToDelete.delete();
+        } else {
+            return true;
+        }
+    }
+
+
     public static File parseToFile(byte[] bytes) {
 
 

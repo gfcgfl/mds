@@ -32,4 +32,8 @@ public interface PatientMapper {
     int updateByPrimaryKeySelective(PatientDO record);
 
     int updateByPrimaryKey(PatientDO record);
+
+    Integer selectPatientAdhdTypeById(Integer patientId);
+
+    void addAdhdType(@Param("patientId") Integer patientId, @Param("adhdType") Integer adhdType);
 }

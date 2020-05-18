@@ -20,7 +20,7 @@
         <module>common</module>
         <module>task-base-service</module>
         <module>file-manage-service-9910</module>
-<!--        <module>tasks-manage-service-10000</module>-->
+        <module>tasks-manage-service-10000</module>
     </modules>
 
     <packaging>pom</packaging>

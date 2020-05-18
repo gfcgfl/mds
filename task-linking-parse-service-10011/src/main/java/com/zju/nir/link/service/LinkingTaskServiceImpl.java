@@ -25,10 +25,10 @@ public class LinkingTaskServiceImpl extends AbstractTaskService implements Linki
     @Autowired
     private LinkingTaskMapper linkingTaskMapper;
 
-    @Autowired
-    public LinkingTaskServiceImpl(FileManageServiceFeignClient fileManageServiceFeignClient) {
-        super(fileManageServiceFeignClient);
-    }
+//    @Autowired
+//    public LinkingTaskServiceImpl(FileManageServiceFeignClient fileManageServiceFeignClient) {
+//        super(fileManageServiceFeignClient);
+//    }
 
 
     @Override

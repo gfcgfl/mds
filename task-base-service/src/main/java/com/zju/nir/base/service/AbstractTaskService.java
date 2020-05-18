@@ -4,25 +4,20 @@ import com.zju.nir.base.feign.FileManageServiceFeignClient;
 import com.zju.nir.common.entity.ReturnResult;
 import com.zju.nir.common.entity.TaskBloodoxygenFileSaveDTO;
 import com.zju.nir.common.entity.TaskDataDTO;
-import com.zju.nir.common.utils.FileUtils;
-import org.aspectj.apache.bcel.generic.RET;
-import org.bouncycastle.util.encoders.Base64Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.io.File;
 
 /**
  * @author xiaoguo
  */
 public abstract class AbstractTaskService implements TaskService {
 
-
+    @Autowired
     protected FileManageServiceFeignClient fileManageServiceFeignClient;
 
 
-    public AbstractTaskService(FileManageServiceFeignClient fileManageServiceFeignClient) {
-        this.fileManageServiceFeignClient = fileManageServiceFeignClient;
-    }
+//    public AbstractTaskService(FileManageServiceFeignClient fileManageServiceFeignClient) {
+//        this.fileManageServiceFeignClient = fileManageServiceFeignClient;
+//    }
 
     @Override
     public ReturnResult<Object> addTask(TaskDataDTO taskDataDTO) {

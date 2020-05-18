@@ -9,9 +9,10 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * @author xiaoguo
  */
-@SpringBootApplication(scanBasePackages={"com.zju.nir.base","com.zju.nir.link"})
+@SpringBootApplication(scanBasePackages = "com.zju.nir" )
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages =  "com.zju.nir.base")
+//@ComponentScan(basePackages = {"com.zju.nir.link", })
 public class TaskLinkingParseServiceMain {
     public static void main(String[] args) {
         SpringApplication.run(TaskLinkingParseServiceMain.class, args);

@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages =  "com.zju.nir.base")
 public class ReyTaskParseServiceMain {
     public static void main(String[] args) {
         SpringApplication.run(ReyTaskParseServiceMain.class, args);

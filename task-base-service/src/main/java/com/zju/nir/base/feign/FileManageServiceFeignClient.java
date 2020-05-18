@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 /**
  * @author xiaoguo
  */
-@Component
+//@Component
 @FeignClient(value = FileManageServiceConstant.FILE_MANAGE_SERVICE_NAME)
 public interface FileManageServiceFeignClient {
 

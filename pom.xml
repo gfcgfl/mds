@@ -13,14 +13,14 @@
         <module>report-manage-service-7001</module>
         <module>bloodoxygen-parse-servcie-8001</module>
         <module>ai-analyze-service-9001</module>
-        <!--<module>task-rey-parse-service-10001</module>-->
-        <!--<module>task-linking-parse-service-10011</module>-->
-        <!--<module>task-stroop-parse-service-10101</module>-->
-        <!--<module>task-rest-parse-service-11001</module>-->
+        <module>task-rey-parse-service-10001</module>
+        <module>task-linking-parse-service-10011</module>
+        <module>task-stroop-parse-service-10101</module>
+        <module>task-rest-parse-service-11001</module>
         <module>common</module>
         <module>task-base-service</module>
         <module>file-manage-service-9910</module>
-        <module>tasks-manage-service-10000</module>
+<!--        <module>tasks-manage-service-10000</module>-->
     </modules>
 
     <packaging>pom</packaging>

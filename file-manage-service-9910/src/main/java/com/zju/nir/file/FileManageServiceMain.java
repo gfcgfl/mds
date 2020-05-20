@@ -9,7 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  * @author xiaoguo
  */
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication //(exclude = {DataSourceAutoConfiguration.class})
 @EnableDiscoveryClient
 @MapperScan("com.zju.nir.file")
 public class FileManageServiceMain {

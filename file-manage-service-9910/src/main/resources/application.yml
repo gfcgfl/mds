@@ -16,11 +16,6 @@ spring:
     url: jdbc:mysql://10.13.81.186:3306/lab_file_system?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: lab205
-    driver-class-name: com.mysql.jdbc.Driver
-      dbcp2:
-        min-idle: 1    #数据库连接池最小维持的连接数
-        initial-size: 1   #初始化的连接数
-        max-total: 10    #最大连接数
 
 mybatis:
   mapper-locations:

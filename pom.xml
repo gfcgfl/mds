@@ -38,7 +38,7 @@
         <jackson.databind.version>2.9.8</jackson.databind.version>
         <zk.version>3.4.14</zk.version>
         <fastjson.version>1.2.58</fastjson.version>
-        <ftp.version>3.3</ftp.version>
+        <ftp.version>3.9.0</ftp.version>
         <itextpdf.version>5.5.13</itextpdf.version>
     </properties>
 
